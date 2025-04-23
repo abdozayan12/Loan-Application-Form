@@ -1,16 +1,28 @@
 .App {
-  text-align: center;
+  background-color: #282c34;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #5f85d1;
   min-height: 150px;
-  padding:  0 25px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  
+  
+  
   font-size: calc(10px + 2vmin);
   color: white;
+  width: 100%;
+}
+
+.headerContainer {
+  padding: 0 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 150px;
 }
 
 .nav-links{
@@ -25,4 +37,37 @@
 
 .nav-links a:hover {
   color: blue;
+}
+
+.form {
+  color: aliceblue;
+  text-align: center;
+  background-color: #2851a3;
+  width: 70%;
+  margin-top: 30px;
+}
+.form input,
+.form select,
+.form button {
+  display: flex;
+  text-align: center;
+  margin: 10px auto;
+  padding: 10px;
+  width: 70%;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  color: aliceblue;
+}
+
+.form button {
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+}
+
+.form button:hover {
+  background-color: #45a049;
 }
