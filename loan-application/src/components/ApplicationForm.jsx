@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
+import Model from './Model'
+import '../App.css'
 
 export default function ApplicationForm() {
     const [formInput, setFormInput] = useState({name: "", phone: "", age: "", employee: "false", salary: ""})
@@ -15,8 +17,10 @@ export default function ApplicationForm() {
       employee: false,
       salary: ""
     });
-  }
-
+    }
+    
+    const btnIsDisabled = formInput.name === "" || formInput.phone === "" || formInput.age === "";
+ 
   return (
     <div className='form'>
       <h1>Requesting a Loan</h1>
@@ -35,7 +39,7 @@ export default function ApplicationForm() {
         <br />
 
         <label htmlFor="employee">Are You An Employee? </label>
-        <input id="employee" type="checkbox" value={formInput.employee} onChange={(e) => {setFormInput({...formInput, employee: e.target.checked})}} />
+        <input id="employee" type="checkbox" checked={formInput.employee} onChange={(e) => {setFormInput({...formInput, employee: e.target.checked})}} />
         <br />
 
         <label htmlFor="salary">Salary: </label>
@@ -46,8 +50,9 @@ export default function ApplicationForm() {
         </select>
         <br /><br />
 
-        <button type="submit" >Submit</button>
-      </form>
+        <button type="submit" disabled={btnIsDisabled}  className={btnIsDisabled ? "disabled" : ""}>Submit</button>
+          </form>
+          <Model />
     </div>
   )
 }
