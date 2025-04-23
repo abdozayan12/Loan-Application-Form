@@ -35,7 +35,7 @@ export default function ApplicationForm() {
         </select>
         <br /><br />
 
-        <button type="submit">Submit</button>
+        <button type="submit" disabled>Submit</button>
       </form>
     </div>
   )
