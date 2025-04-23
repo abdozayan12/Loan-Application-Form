@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
 
-export default function Model() {
-  return (
-    <div>
-      <div><h1>The Form Has Been Submitted Successfully</h1></div>
-    </div>
-  )
+export default function Model({ isVisible }) {
+  if (isVisible) {
+    return (
+      <div id="model">
+        <div id="model-content">
+          <div>
+            <h1>The Form Has Been Submitted Successfully</h1>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return <></>;
+  }
 }
