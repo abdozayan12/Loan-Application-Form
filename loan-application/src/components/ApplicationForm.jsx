@@ -22,7 +22,8 @@ export default function ApplicationForm() {
       employee: false,
       salary: "",
     });
-    setShowModel(true);
+    setShowModel(true)
+    setTimeout(() => { setShowModel(false) }, 5000);
   }
 
   const btnIsDisabled =

@@ -1,4 +1,5 @@
 import React from "react";
+import './model.css'
 
 export default function Model({ isVisible }) {
   if (isVisible) {
