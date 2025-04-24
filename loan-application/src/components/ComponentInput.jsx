@@ -1,22 +1,19 @@
 import React from "react";
+import { useContext } from "react";
+import { LoanFormInputContexts } from "../context/LoanFormInputContext";
 
-export default function CoponentInput({
-  label,
-  id,
-  type = "text",
-  value,
-  handleChange,
-  ...rest // للبروبس الإضافية زي maxLength أو min/max
-}) {
+export default function CoponentInput() {
+
+  const inputContext = useContext(LoanFormInputContexts)
   return (
     <>
-      <label htmlFor={id}>{label}: </label>
+      <label htmlFor={inputContext.id}>{inputContext.label}: </label>
       <input
-        id={id}
-        type={type}
-        value={value}
-        onChange={(e) => handleChange(e.target.value)}
-        {...rest}
+        id={inputContext.id}
+        type={inputContext.type}
+        value={inputContext.value}
+        onChange={(e) => inputContext.handleChange(e.target.value)}
+      
       />
     </>
   );

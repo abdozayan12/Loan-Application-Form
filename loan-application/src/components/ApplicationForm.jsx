@@ -1,10 +1,16 @@
 import React from "react";
+import { useContext } from "react";
 import { useState } from "react";
 import Model from "./Model";
 import "../App.css";
-import CoponentInput from "./ComponentInput";
+import ComponentInput from "./ComponentInput";
+import { LoanFormInputContexts } from "../context/LoanFormInputContext";
+import { userContext } from "../context/UserContext";
+
 
 export default function ApplicationForm() {
+
+  const userData = useContext(userContext)
   const [showModel, setShowModel] = useState(false);
   const [formInput, setFormInput] = useState({
     name: "",
@@ -23,8 +29,10 @@ export default function ApplicationForm() {
       employee: false,
       salary: "",
     });
-    setShowModel(true)
-    setTimeout(() => { setShowModel(false) }, 5000);
+    setShowModel(true);
+    setTimeout(() => {
+      setShowModel(false);
+    }, 5000);
   }
 
   const btnIsDisabled =
@@ -37,48 +45,61 @@ export default function ApplicationForm() {
   }
 
   function nameChange(value) {
-    setFormInput({...formInput, name: value})
+    setFormInput({ ...formInput, name: value });
   }
 
   function phoneNumberChange(value) {
-    setFormInput({...formInput, phone: value })
+    setFormInput({ ...formInput, phone: value });
   }
 
   function ageChange(value) {
-    setFormInput({...formInput, age: value})
+    setFormInput({ ...formInput, age: value });
   }
 
   return (
     <div className="form" onClick={handelShowModel}>
       <form onSubmit={handleSubmit}>
+        <h1 style={{ color: "Red", fontSize: "25px" }}>Hello {userData.name}</h1>
         <h1>Requesting a Loan</h1>
         <hr />
-        <CoponentInput
-          label="Name"
-          id="name"
-          type="text"
-          value={formInput.name}
-          handleChange={nameChange}
-        />
+        <LoanFormInputContexts.Provider
+          value={{
+            label: "Name",
+            id: "name",
+            type: "text",
+            value: formInput.name,
+            handleChange: nameChange,
+          }}
+        >
+          <ComponentInput />
+        </LoanFormInputContexts.Provider>
 
-        <CoponentInput
-          label="Phone Number"
-          id="phone"
-          type="tel"
-          maxLength="12"
-          value={formInput.phone}
-          handleChange={phoneNumberChange}
-        />
+        <LoanFormInputContexts.Provider
+          value={{
+            label: "Phone Number",
+            id: "phone",
+            type: "tel",
+            maxLength: "12",
+            value: formInput.phone,
+            handleChange: phoneNumberChange,
+          }}
+        >
+          <ComponentInput />
+        </LoanFormInputContexts.Provider>
 
-        <CoponentInput
-          label="Age"
-          id="age"
-          type="number"
-          min="18"
-          max="60"
-          value={formInput.age}
-          handleChange={ageChange}
-        />
+        <LoanFormInputContexts.Provider
+          value={{
+            label: "Age",
+            id: "age",
+            type: "number",
+            min: "18",
+            max: "60",
+            value: formInput.age,
+            handleChange: ageChange,
+          }}
+        >
+          <ComponentInput />
+        </LoanFormInputContexts.Provider>
 
         <br />
 

@@ -1,15 +1,18 @@
-import Header from './components/Header'
-import ApplicationForm from './components/ApplicationForm'
-import './App.css';
+import Header from "./components/Header";
+import ApplicationForm from "./components/ApplicationForm";
+import "./App.css";
+import { userContext } from "./context/UserContext";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      
+    <userContext.Provider
+      value={{ userName: "Kareem", name: "Ali", email: "KA@gmail.com" }}
+    >
+      <div className="App">
+        <Header />
         <ApplicationForm />
-      
-    </div>
+      </div>
+    </userContext.Provider>
   );
 }
 
