@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Model from "./Model";
 import "../App.css";
+import CoponentInput from "./ComponentInput";
 
 export default function ApplicationForm() {
   const [showModel, setShowModel] = useState(false);
@@ -35,44 +36,50 @@ export default function ApplicationForm() {
     }
   }
 
+  function nameChange(value) {
+    setFormInput({...formInput, name: value})
+  }
+
+  function phoneNumberChange(value) {
+    setFormInput({...formInput, phone: value })
+  }
+
+  function ageChange(value) {
+    setFormInput({...formInput, age: value})
+  }
+
   return (
     <div className="form" onClick={handelShowModel}>
       <form onSubmit={handleSubmit}>
         <h1>Requesting a Loan</h1>
         <hr />
-        <label htmlFor="name">Name: </label>
-        <input
+        <CoponentInput
+          label="Name"
           id="name"
           type="text"
           value={formInput.name}
-          onChange={(e) => {
-            setFormInput({ ...formInput, name: e.target.value });
-          }}
+          handleChange={nameChange}
         />
-        <br />
 
-        <label htmlFor="phone">Phone Number: </label>
-        <input
+        <CoponentInput
+          label="Phone Number"
           id="phone"
+          type="tel"
           maxLength="12"
           value={formInput.phone}
-          onChange={(e) => {
-            setFormInput({ ...formInput, phone: e.target.value });
-          }}
+          handleChange={phoneNumberChange}
         />
-        <br />
 
-        <label htmlFor="age">Age: </label>
-        <input
+        <CoponentInput
+          label="Age"
           id="age"
           type="number"
           min="18"
           max="60"
           value={formInput.age}
-          onChange={(e) => {
-            setFormInput({ ...formInput, age: e.target.value });
-          }}
+          handleChange={ageChange}
         />
+
         <br />
 
         <label htmlFor="employee">Are You An Employee? </label>
